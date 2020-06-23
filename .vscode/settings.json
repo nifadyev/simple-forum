@@ -1,0 +1,40 @@
+{
+    "python.pythonPath": "venv\\Scripts\\python.exe",
+    "python.linting.pylintArgs": [
+        "--load-plugins",
+        "pylint_django"
+    ],
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        ".vscode": true,
+        "**/*.pyc": true,
+    },
+    "files.associations": {
+        "**/*.html": "html",
+        "**/templates/**/*.html": "django-html",
+        "**/templates/**/*": "django-txt",
+        "**/requirements{/**,*}.{txt,in}": "pip-requirements"
+    },
+    "emmet.includeLanguages": {
+        "django-html": "html"
+    },
+    "files.eol": "\n",
+    "python.autoComplete.extraPaths": [
+        "django_test_1",
+    ],
+    "python.envFile": ".vscode/.venv",
+    "python.testing.pytestArgs": [
+        "django_test_1"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.nosetestsEnabled": false,
+    "python.testing.pytestEnabled": true,
+    "django.snippets.exclude": [
+        "cms",
+        "wagtail"
+    ]
+}
