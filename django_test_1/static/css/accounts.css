@@ -1,0 +1,16 @@
+body {
+    background-image: url(../img/webb.png);
+}
+
+.logo {
+    font-family: 'Playfair Display', cursive;
+}
+
+.logo a {
+    color: rgba(0, 0, 0, .9);
+}
+
+.logo a:hover,
+.logo a:active {
+    text-decoration: none;
+}
