@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import Truncator
 from django.contrib.auth.models import User
 
 
@@ -6,9 +7,15 @@ class Board(models.Model):
     name = models.CharField(max_length=30, unique=True)
     description = models.CharField(max_length=100)
 
+    # ! necessary to play with classes in python shell
     def __str__(self):
         return self.name
 
+    def get_posts_count(self):
+        return Post.objects.filter(topic__board=self).count()
+
+    def get_last_post(self):
+        return Post.objects.filter(topic__board=self).order_by('-created_at').first()
 
 class Topic(models.Model):
     subject = models.CharField(max_length=255)
@@ -16,6 +23,11 @@ class Topic(models.Model):
     # ? Not sure about on_delete
     board = models.ForeignKey(Board, related_name='topics', on_delete=models.DO_NOTHING)
     starter = models.ForeignKey(User, related_name='topics', on_delete=models.DO_NOTHING)
+    views = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return self.subject
+
 
 
 class Post(models.Model):
@@ -26,3 +38,7 @@ class Post(models.Model):
     created_by = models.ForeignKey(User, related_name='posts', on_delete=models.DO_NOTHING)
     # * + means that we don't need reverse relationship
     updated_by = models.ForeignKey(User, null=True, related_name='+', on_delete=models.DO_NOTHING)
+
+    def __str__(self):
+        truncated_message = Truncator(self.message)
+        return truncated_message.chars(30)
