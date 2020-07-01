@@ -19,6 +19,7 @@ from django.contrib.auth import views as auth_views
 
 from accounts import views as accounts_views
 from boards import views
+from accounts import views as accounts_views
 
 # ! url() is deprecated
 # ! order in urlpatterns matter because Django will stop searching as soon as it finds a match
@@ -63,6 +64,11 @@ urlpatterns = [
         'settings/password/done/',
         auth_views.PasswordChangeDoneView.as_view(template_name='password_change_done.html'),
         name='password_change_done'
+    ),
+    path(
+        'settings/account/',
+        accounts_views.UserUpdateView.as_view(),
+        name='my_account'
     ),
 
     re_path(r'^boards/(?P<pk>\d+)/$', views.TopicListView.as_view(), name='board_topics'),
