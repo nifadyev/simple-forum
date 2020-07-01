@@ -2,6 +2,8 @@
 
 {% load static %}
 
+{% load gravatar %}
+
 {% block title %}{{ topic.subject }}{% endblock title %}
 
 {% block breadcrumb %}
@@ -32,9 +34,9 @@
                 <div class="row">
                     <div class="col-2">
                         <img
-                            src="{% static 'img/avatar.svg' %}"
+                            src="{{ post.created_by|gravatar }}"
                             alt="{{ post.created_by.username }}"
-                            class="w-100"
+                            class="w-100 rounded"
                         >
                         <small>Posts: {{ post.created_by.posts.count }}</small>
                     </div>
