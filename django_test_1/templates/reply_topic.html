@@ -4,6 +4,12 @@
 
 {% block title %}Post a reply{% endblock title %}
 
+{% block javascript %}
+    <script>
+         var simplemde = new SimpleMDE({forceSync: true})
+    </script>
+{% endblock javascript %}
+
 {% block breadcrumb %}
     <li class="breadcrumb-item"><a href="{% url 'home' %}'">Boards</a></li>
     <li class="breadcrumb-item"><a href="{% url 'board_topics' topic.board.pk %}'">{{ topic.board.name }}</a></li>
@@ -12,7 +18,7 @@
 {% endblock breadcrumb %}
 
 {% block content %}
-    <form method="post" class="mb-4">
+    <form method="post" class="mb-4" novalidate>
         {% csrf_token %}
         {% include 'includes/form.html' %}
         <button type="submit" class="btn btn-success">Post a reply</button>
@@ -30,9 +36,8 @@
                         <small class="text-muted">{{ post.created_at }}</small>
                     </div>
                 </div>
-                {{ post.message }}
+                {{ post.get_message_as_markdown }}
             </div>
         </div>
     {% endfor %}
-        
 {% endblock content %}

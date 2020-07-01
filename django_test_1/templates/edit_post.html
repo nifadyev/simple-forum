@@ -2,6 +2,12 @@
 
 {% block title %}Edit post{% endblock title %}
 
+{% block javascript %}
+    <script>
+         var simplemde = new SimpleMDE({forceSync: true})
+    </script>
+{% endblock javascript %}
+
 {% block breadcrumb %}
     <li class="breadcrumb-item"><a href="{% url 'home' %}">Boards</a></li>
     <li class="breadcrumb-item">

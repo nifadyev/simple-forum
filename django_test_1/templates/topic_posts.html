@@ -47,7 +47,7 @@
                                 <small class="text-mited">{{ post.created_at }}</small>
                             </div>
                         </div>
-                        {{ post.message }}
+                        {{ post.get_message_as_markdown }}
 
                         {% if post.created_by == user %}
                             <div class="mt-3">
