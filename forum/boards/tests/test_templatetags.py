@@ -12,23 +12,25 @@ class ExampleForm(TestCase):
         fields = ('name', 'password')
 
     class FieldTypeTests(TestCase):
+
         def test_field_widget_type(self):
             form = ExampleForm()
-            self.assertEquals('TextInput', field_type(form['name']))
-            self.assertEquals('PasswordInput', field_type(form['password']))
+
+            self.assertEqual('TextInput', field_type(form['name']))
+            self.assertEqual('PasswordInput', field_type(form['password']))
 
     class InputClassTests(TestCase):
         def test_unbound_field_initial_stats(self):
             form = ExampleForm()
-            self.assertEquals('form-control', input_class(form['name']))
+            self.assertEqual('form-control', input_class(form['name']))
 
         def test_valid_bound_field(self):
             form = ExampleForm({'name': 'john', 'password': '123'})
 
-            self.assertEquals('form-control is-valid', input_class(form['name']))
-            self.assertEquals('form-control', input_class(form['password']))
+            self.assertEqual('form-control is-valid', input_class(form['name']))
+            self.assertEqual('form-control', input_class(form['password']))
 
         def test_invalid_bound_field(self):
             form = ExampleForm({'name': '', 'password': '123'})
 
-            self.assertEquals('form-control is-invalid', input_class(form['name']))
+            self.assertEqual('form-control is-invalid', input_class(form['name']))
